@@ -1,0 +1,6 @@
+ID do teste;Cenário;Entrada;Resultado esperado;Resultado obtido;Status;Observações
+CT01;Login válido;email e senha corretos;HTTP 200 + access_token;;;
+CT02;Senha incorreta;email correto + senha errada;HTTP 400 invalid_credentials;;;
+CT03;Usuário inexistente;email não cadastrado;HTTP 400 invalid_credentials;;;
+CT04;Campos vazios;email "" e password "";HTTP 4xx erro de validação;;;
+CT05;Credenciais inválidas;email sem formato válido + senha curta;HTTP 4xx mensagem de erro;;;

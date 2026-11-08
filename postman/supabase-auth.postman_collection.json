@@ -1,0 +1,102 @@
+{
+  "info": {
+    "name": "Supabase Auth - Testes Caixa Cinza",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "CT01 - Login valido",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('Status 200', () => pm.response.to.have.status(200));",
+        "pm.test('Retorna access_token', () => { const j = pm.response.json(); pm.expect(j.access_token).to.be.a('string').and.not.empty; pm.expect(j.token_type).to.eql('bearer'); });"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "description": "Espera 200 + access_token",
+        "header": [
+          { "key": "apikey", "value": "{{api_key}}" },
+          { "key": "Authorization", "value": "Bearer {{api_key}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{base_url}}/auth/v1/token?grant_type=password", "host": ["{{base_url}}"], "path": ["auth", "v1", "token"], "query": [{ "key": "grant_type", "value": "password" }] }
+      }
+    },
+    {
+      "name": "CT02 - Senha incorreta",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('Status 4xx', () => pm.expect(pm.response.code).to.be.within(400, 422));",
+        "pm.test('Sem access_token', () => pm.expect(pm.response.json()).to.not.have.property('access_token'));",
+        "pm.test('Mensagem de erro presente', () => { const j = pm.response.json(); pm.expect(j.msg || j.error_description || j.message).to.be.a('string'); });"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "description": "Espera erro de autenticacao (invalid_credentials)",
+        "header": [
+          { "key": "apikey", "value": "{{api_key}}" },
+          { "key": "Authorization", "value": "Bearer {{api_key}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"SenhaErrada@999\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{base_url}}/auth/v1/token?grant_type=password", "host": ["{{base_url}}"], "path": ["auth", "v1", "token"], "query": [{ "key": "grant_type", "value": "password" }] }
+      }
+    },
+    {
+      "name": "CT03 - Usuario inexistente",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('Status 4xx', () => pm.expect(pm.response.code).to.be.within(400, 422));",
+        "pm.test('Sem access_token', () => pm.expect(pm.response.json()).to.not.have.property('access_token'));",
+        "pm.test('Mensagem de erro presente', () => { const j = pm.response.json(); pm.expect(j.msg || j.error_description || j.message).to.be.a('string'); });"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "description": "Espera acesso negado",
+        "header": [
+          { "key": "apikey", "value": "{{api_key}}" },
+          { "key": "Authorization", "value": "Bearer {{api_key}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"naoexiste.teste@email.com\",\n  \"password\": \"Qualquer@123\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{base_url}}/auth/v1/token?grant_type=password", "host": ["{{base_url}}"], "path": ["auth", "v1", "token"], "query": [{ "key": "grant_type", "value": "password" }] }
+      }
+    },
+    {
+      "name": "CT04 - Campos vazios",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('Status 4xx', () => pm.expect(pm.response.code).to.be.within(400, 422));",
+        "pm.test('Sem access_token', () => pm.expect(pm.response.json()).to.not.have.property('access_token'));",
+        "pm.test('Mensagem de erro presente', () => { const j = pm.response.json(); pm.expect(j.msg || j.error_description || j.message).to.be.a('string'); });"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "description": "Espera erro de validacao",
+        "header": [
+          { "key": "apikey", "value": "{{api_key}}" },
+          { "key": "Authorization", "value": "Bearer {{api_key}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"\",\n  \"password\": \"\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{base_url}}/auth/v1/token?grant_type=password", "host": ["{{base_url}}"], "path": ["auth", "v1", "token"], "query": [{ "key": "grant_type", "value": "password" }] }
+      }
+    },
+    {
+      "name": "CT05 - Credenciais invalidas",
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('Status 4xx', () => pm.expect(pm.response.code).to.be.within(400, 422));",
+        "pm.test('Sem access_token', () => pm.expect(pm.response.json()).to.not.have.property('access_token'));",
+        "pm.test('Mensagem de erro presente', () => { const j = pm.response.json(); pm.expect(j.msg || j.error_description || j.message).to.be.a('string'); });"
+      ] } }],
+      "request": {
+        "method": "POST",
+        "description": "Espera mensagem de erro",
+        "header": [
+          { "key": "apikey", "value": "{{api_key}}" },
+          { "key": "Authorization", "value": "Bearer {{api_key}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"isso-nao-e-email\",\n  \"password\": \"1\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{base_url}}/auth/v1/token?grant_type=password", "host": ["{{base_url}}"], "path": ["auth", "v1", "token"], "query": [{ "key": "grant_type", "value": "password" }] }
+      }
+    }
+  ]
+}
