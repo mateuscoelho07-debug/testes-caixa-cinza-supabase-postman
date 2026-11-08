@@ -1,6 +1,6 @@
 ID do teste;Cenário;Entrada;Resultado esperado;Resultado obtido;Status;Observações
-CT01;Login válido;email e senha corretos;HTTP 200 + access_token;;;
-CT02;Senha incorreta;email correto + senha errada;HTTP 400 invalid_credentials;;;
-CT03;Usuário inexistente;email não cadastrado;HTTP 400 invalid_credentials;;;
-CT04;Campos vazios;email "" e password "";HTTP 4xx erro de validação;;;
-CT05;Credenciais inválidas;email sem formato válido + senha curta;HTTP 4xx mensagem de erro;;;
+CT01;Login válido;email e senha corretos;HTTP 200 + access_token;HTTP 200 + access_token retornado;OK;Runner Postman - 952 ms
+CT02;Senha incorreta;email correto + senha errada;HTTP 400 invalid_credentials;HTTP 400 sem token com mensagem de erro;OK;372 ms
+CT03;Usuário inexistente;email não cadastrado;HTTP 400 invalid_credentials;HTTP 400 sem token com mensagem de erro;OK;244 ms - mesma resposta de CT02 (nao revela se o email existe)
+CT04;Campos vazios;email "" e password "";HTTP 4xx erro de validação;HTTP 400 sem token com mensagem de erro;OK;248 ms
+CT05;Credenciais inválidas;email sem formato válido + senha curta;HTTP 4xx mensagem de erro;HTTP 400 sem token com mensagem de erro;OK;243 ms
