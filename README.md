@@ -1,6 +1,6 @@
 # Testes Caixa Cinza em API de Autenticação (Supabase + Postman)
 
-> **Aluno:** `<SEU NOME COMPLETO>` — **RA/Turma:** `<PREENCHER>`
+> **Aluno:** Mateus Coelho Cardoso — **RA:** 250855
 
 > ⚠️ **Antes de entregar:** procure por `<PREENCHER>` / `TODO` neste arquivo e substitua pelos dados e prints reais produzidos por você. Nada aqui deve ser copiado de terceiros.
 
