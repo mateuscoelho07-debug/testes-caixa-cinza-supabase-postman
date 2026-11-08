@@ -64,7 +64,7 @@ Este projeto documenta a execução de testes funcionais **caixa cinza** sobre a
 
 As variáveis evitam repetir valores e permitem trocar de projeto/usuário sem editar cada requisição. A collection `postman/supabase-auth.postman_collection.json` contém as 5 requisições, cada uma com testes automáticos (aba *Tests*).
 
-**Evidências:** `prints/07-workspace.jpg`, `prints/08-environment.jpg`, `prints/09-variaveis.jpg`, `prints/10-organizacao-postman.jpg`.
+**Evidências:** `prints/07-workspace.png`, `prints/08-environment-variaveis.png` (valor da api_key ocultado), `prints/09-organizacao-postman.png`.
 
 # Configuração das Requisições
 
@@ -87,7 +87,7 @@ As variáveis evitam repetir valores e permitem trocar de projeto/usuário sem e
 
 (No Postman o body usa `{{email}}` e `{{password}}`.)
 
-**Evidências:** `prints/11-endpoint.jpg`, `prints/12-headers.jpg`, `prints/13-body.jpg`, `prints/14-requisicao.jpg`.
+**Evidências:** `prints/10-endpoint-params.png`, `prints/11-headers.png`, `prints/12-body.png` (requisição CT01 criada no Postman).
 
 # Execução dos Testes
 
