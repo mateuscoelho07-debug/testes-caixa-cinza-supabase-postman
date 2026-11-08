@@ -107,9 +107,9 @@ Cenários executados (collection `postman/`):
 
 # Registro dos Testes
 
-Os testes foram registrados em [`planilha/registro_testes.csv`](planilha/registro_testes.csv) (campos: ID, cenário, entrada, resultado esperado, resultado obtido, status, observações), preenchida logo após cada execução. Documentar os testes garante rastreabilidade, repetibilidade e comparação entre versões. Falhas identificadas: `<PREENCHER>`.
+Os testes foram registrados em [`planilha/registro_testes.csv`](planilha/registro_testes.csv) (campos: ID, cenário, entrada, resultado esperado, resultado obtido, status, observações), preenchida logo após cada execução. Documentar os testes garante rastreabilidade, repetibilidade e comparação entre versões. Falhas identificadas: nenhuma; todos os cenários se comportaram como esperado. A planilha está disponível em `.csv` e `.xlsx`.
 
-**Evidências:** `prints/20-planilha.jpg`.
+**Evidências:** `prints/22-planilha.png` (planilha preenchida com CT01 a CT05).
 
 # Resultados Obtidos
 
@@ -117,4 +117,12 @@ Execução pelo Runner do Postman (1 iteração, 5 requisições, 14 testes auto
 
 # Conclusão
 
-`<PREENCHER com suas palavras>` Pontos obrigatórios a comentar: se os testes foram executados corretamente; se a autenticação funcionou; dificuldades encontradas; falhas identificadas; melhorias possíveis (ex.: limite de tentativas, mensagens padronizadas, testes automatizados no CI via Newman); e a importância dos testes caixa cinza em APIs (validam contrato e segurança com conhecimento parcial, sem depender de interface).
+**Execução e funcionamento:** os cinco cenários obrigatórios foram executados por mim no Postman Desktop contra o projeto que criei no Supabase, e todos tiveram o resultado esperado. A autenticação funcionou: o login válido retornou HTTP 200 com `access_token`, `token_type: bearer` e `expires_in: 3600`, enquanto senha incorreta, usuário inexistente, campos vazios e credenciais inválidas foram rejeitados com HTTP 400 e sem emitir token.
+
+**Dificuldades:** a principal foi o primeiro contato com o ambiente: descobrir onde obter a URL e a chave `anon` no painel do Supabase, entender que a mesma chave vai nos headers `apikey` e `Authorization: Bearer`, e configurar o environment do Postman sem expor senha e chave nos arquivos do repositório. Também foi preciso ocultar o `refresh_token` nos prints, já que o repositório é público.
+
+**Falhas identificadas:** nenhuma falha funcional. Observei apenas que o Supabase usa o mesmo código (`invalid_credentials`) e a mesma mensagem para senha errada e e-mail inexistente; isso é um comportamento correto de segurança, pois impede enumeração de usuários, mas significa que o cliente não consegue distinguir os dois casos.
+
+**Melhorias possíveis:** acrescentar cenários como bloqueio por excesso de tentativas (rate limit), e-mail não confirmado, senha com espaços, corpo sem o campo `password`, tipos de dado incorretos e método HTTP inválido; verificar a expiração e o uso do `refresh_token`; padronizar as mensagens de erro para o front-end; e automatizar a execução da collection com o Postman CLI/Newman em um pipeline de CI.
+
+**Importância dos testes caixa cinza:** nesse tipo de teste o testador conhece o contrato da API (endpoint, headers, body e respostas esperadas), mas não o código interno. Isso permite validar autenticação, tratamento de erros e segurança de forma rápida e sem depender de interface gráfica, encontrando falhas de contrato e de validação antes de chegarem ao usuário final.
