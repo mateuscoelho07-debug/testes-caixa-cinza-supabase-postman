@@ -26,7 +26,7 @@ Este projeto documenta a execução de testes funcionais **caixa cinza** sobre a
 
 # Configuração do Supabase
 
-**Como o projeto foi criado:** acessei https://supabase.com, criei minha conta, e em *New project* criei o projeto `<NOME DO PROJETO>` (região `<REGIÃO>`). `<PREENCHER com o seu relato>`
+**Como o projeto foi criado:** acessei https://supabase.com, criei minha conta, e em *New project* criei o projeto `testes-caixa-cinza-auth` (região East US, Ohio). `<PREENCHER com o seu relato>`
 
 **Tipo de autenticação:** e-mail e senha (*Authentication → Providers → Email* habilitado). Para facilitar o teste, a confirmação de e-mail foi `<desativada / usuário confirmado manualmente>`.
 
@@ -40,14 +40,14 @@ Este projeto documenta a execução de testes funcionais **caixa cinza** sobre a
 
 | Evidência | Arquivo |
 |---|---|
-| Projeto criado | `prints/01-projeto-criado.png` |
-| Painel do Supabase | `prints/02-painel.png` |
-| Autenticação habilitada | `prints/03-auth-habilitada.png` |
-| Usuário criado | `prints/04-usuario-criado.png` |
-| Credenciais da API (chave parcialmente oculta) | `prints/05-credenciais-api.png` |
-| Identificação do aluno no ambiente | `prints/06-identificacao.png` |
+| Projeto criado | `prints/01-projeto-criado.jpg` |
+| Painel do Supabase | `prints/02-painel.jpg` |
+| Autenticação habilitada | `prints/03-auth-habilitada.jpg` |
+| Usuário criado | `prints/04-usuario-criado.jpg` |
+| Credenciais da API (chave parcialmente oculta) | `prints/05-credenciais-api.jpg` |
+| Identificação do aluno no ambiente | `prints/06-identificacao.jpg` |
 
-<!-- TODO: após salvar os prints, descomente/adicione: ![Projeto criado](prints/01-projeto-criado.png) -->
+<!-- TODO: após salvar os prints, descomente/adicione: ![Projeto criado](prints/01-projeto-criado.jpg) -->
 
 # Configuração do Postman
 
@@ -64,7 +64,7 @@ Este projeto documenta a execução de testes funcionais **caixa cinza** sobre a
 
 As variáveis evitam repetir valores e permitem trocar de projeto/usuário sem editar cada requisição. A collection `postman/supabase-auth.postman_collection.json` contém as 5 requisições, cada uma com testes automáticos (aba *Tests*).
 
-**Evidências:** `prints/07-workspace.png`, `prints/08-environment.png`, `prints/09-variaveis.png`, `prints/10-organizacao-postman.png`.
+**Evidências:** `prints/07-workspace.jpg`, `prints/08-environment.jpg`, `prints/09-variaveis.jpg`, `prints/10-organizacao-postman.jpg`.
 
 # Configuração das Requisições
 
@@ -87,7 +87,7 @@ As variáveis evitam repetir valores e permitem trocar de projeto/usuário sem e
 
 (No Postman o body usa `{{email}}` e `{{password}}`.)
 
-**Evidências:** `prints/11-endpoint.png`, `prints/12-headers.png`, `prints/13-body.png`, `prints/14-requisicao.png`.
+**Evidências:** `prints/11-endpoint.jpg`, `prints/12-headers.jpg`, `prints/13-body.jpg`, `prints/14-requisicao.jpg`.
 
 # Execução dos Testes
 
@@ -103,13 +103,13 @@ Cenários executados (collection `postman/`):
 
 **Erros encontrados:** `<PREENCHER>`
 
-**Evidências:** `prints/15-ct01-valido.png` (com access_token), `prints/16-ct02-senha-incorreta.png`, `prints/17-ct03-inexistente.png`, `prints/18-ct04-vazios.png`, `prints/19-ct05-invalidas.png` — mostrando status HTTP, JSON e mensagem de erro.
+**Evidências:** `prints/15-ct01-valido.jpg` (com access_token), `prints/16-ct02-senha-incorreta.jpg`, `prints/17-ct03-inexistente.jpg`, `prints/18-ct04-vazios.jpg`, `prints/19-ct05-invalidas.jpg` — mostrando status HTTP, JSON e mensagem de erro.
 
 # Registro dos Testes
 
 Os testes foram registrados em [`planilha/registro_testes.csv`](planilha/registro_testes.csv) (campos: ID, cenário, entrada, resultado esperado, resultado obtido, status, observações), preenchida logo após cada execução. Documentar os testes garante rastreabilidade, repetibilidade e comparação entre versões. Falhas identificadas: `<PREENCHER>`.
 
-**Evidências:** `prints/20-planilha.png`.
+**Evidências:** `prints/20-planilha.jpg`.
 
 # Resultados Obtidos
 
