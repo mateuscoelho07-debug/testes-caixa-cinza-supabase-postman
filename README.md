@@ -95,15 +95,15 @@ Cenários executados (collection `postman/`):
 
 | ID | Cenário | Entrada Utilizada | Resultado Esperado | Resultado Obtido | Status |
 |---|---|---|---|---|---|
-| CT01 | Login válido | e-mail e senha corretos | 200 + access_token | HTTP 200 (952 ms, 3,047 KB); testes "Status 200" e "Retorna access_token" passaram | OK |
+| CT01 | Login válido | e-mail e senha corretos | 200 + access_token | HTTP 200 (952 ms, 3,047 KB); JSON com `access_token` (JWT), `token_type: bearer`, `expires_in: 3600` e dados do usuário | OK |
 | CT02 | Senha incorreta | e-mail correto, senha errada | 400, erro de autenticação (`invalid_credentials`) | HTTP 400 (372 ms); JSON `{"code":400,"error_code":"invalid_credentials","msg":"Invalid login credentials"}` | OK |
-| CT03 | Usuário inexistente | `naoexiste.teste@email.com` | Acesso negado (4xx) | HTTP 400 (244 ms); sem access_token; mensagem de erro presente | OK |
-| CT04 | Campos vazios | email `""`, password `""` | Erro de validação (4xx) | HTTP 400 (248 ms); sem access_token; mensagem de erro presente | OK |
-| CT05 | Credenciais inválidas | `isso-nao-e-email` / `1` | Mensagem de erro (4xx) | HTTP 400 (243 ms); sem access_token; mensagem de erro presente | OK |
+| CT03 | Usuário inexistente | `naoexiste.teste@email.com` | Acesso negado (4xx) | HTTP 400 (244 ms); `invalid_credentials` - "Invalid login credentials" | OK |
+| CT04 | Campos vazios | email `""`, password `""` | Erro de validação (4xx) | HTTP 400 (248 ms); `validation_failed` - "missing email or phone" | OK |
+| CT05 | Credenciais inválidas | `isso-nao-e-email` / `1` | Mensagem de erro (4xx) | HTTP 400 (243 ms); `invalid_credentials` - "Invalid login credentials" | OK |
 
 **Erros encontrados:** nenhum desvio em relação ao esperado. Observação: CT02 e CT03 retornam o mesmo status (400) e o mesmo tamanho de resposta (1,035 KB), ou seja, a API não revela se o e-mail existe, o que é um comportamento desejável contra enumeração de usuários.
 
-**Evidências:** `prints/15-runner-ct01-ct04.png` e `prints/16-runner-ct05.png` (resultado da execução no Runner do Postman, com status HTTP e testes aprovados). Resposta JSON do CT02: `prints/17-ct02-senha-incorreta.png`. Faltam os prints de CT01, CT03, CT04 e CT05: `<ADICIONAR>`.
+**Evidências:** `prints/15-runner-ct01-ct04.png` e `prints/16-runner-ct05.png` (resultado da execução no Runner do Postman, com status HTTP e testes aprovados). Resposta JSON do CT02: `prints/17-ct02-senha-incorreta.png`. CT01 (com access_token; o refresh_token foi ocultado): `prints/18-ct01-login-valido.png`; CT03: `prints/19-ct03-usuario-inexistente.png`; CT04: `prints/20-ct04-campos-vazios.png`; CT05: `prints/21-ct05-credenciais-invalidas.png`.
 
 # Registro dos Testes
 
@@ -113,7 +113,7 @@ Os testes foram registrados em [`planilha/registro_testes.csv`](planilha/registr
 
 # Resultados Obtidos
 
-Execução pelo Runner do Postman (1 iteração, 5 requisições, 14 testes automáticos): **5 de 5 cenários OK**. O login válido retornou 200 com `access_token`; os quatro cenários inválidos retornaram 400 sem token e com mensagem de erro. Mensagens JSON exatas: `<COLAR a partir dos prints das respostas>`.
+Execução pelo Runner do Postman (1 iteração, 5 requisições, 14 testes automáticos): **5 de 5 cenários OK**. O login válido retornou 200 com `access_token`; os quatro cenários inválidos retornaram 400 sem token e com mensagem de erro. Mensagens reais: CT02, CT03 e CT05 retornaram `{"code":400,"error_code":"invalid_credentials","msg":"Invalid login credentials"}`; CT04 retornou `{"code":400,"error_code":"validation_failed","msg":"missing email or phone"}`.
 
 # Conclusão
 
