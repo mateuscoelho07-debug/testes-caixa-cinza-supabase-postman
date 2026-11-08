@@ -96,14 +96,14 @@ Cenários executados (collection `postman/`):
 | ID | Cenário | Entrada Utilizada | Resultado Esperado | Resultado Obtido | Status |
 |---|---|---|---|---|---|
 | CT01 | Login válido | e-mail e senha corretos | 200 + access_token | HTTP 200 (952 ms, 3,047 KB); testes "Status 200" e "Retorna access_token" passaram | OK |
-| CT02 | Senha incorreta | e-mail correto, senha errada | 400, erro de autenticação (`invalid_credentials`) | HTTP 400 (372 ms); sem access_token; mensagem de erro presente | OK |
+| CT02 | Senha incorreta | e-mail correto, senha errada | 400, erro de autenticação (`invalid_credentials`) | HTTP 400 (372 ms); JSON `{"code":400,"error_code":"invalid_credentials","msg":"Invalid login credentials"}` | OK |
 | CT03 | Usuário inexistente | `naoexiste.teste@email.com` | Acesso negado (4xx) | HTTP 400 (244 ms); sem access_token; mensagem de erro presente | OK |
 | CT04 | Campos vazios | email `""`, password `""` | Erro de validação (4xx) | HTTP 400 (248 ms); sem access_token; mensagem de erro presente | OK |
 | CT05 | Credenciais inválidas | `isso-nao-e-email` / `1` | Mensagem de erro (4xx) | HTTP 400 (243 ms); sem access_token; mensagem de erro presente | OK |
 
 **Erros encontrados:** nenhum desvio em relação ao esperado. Observação: CT02 e CT03 retornam o mesmo status (400) e o mesmo tamanho de resposta (1,035 KB), ou seja, a API não revela se o e-mail existe, o que é um comportamento desejável contra enumeração de usuários.
 
-**Evidências:** `prints/15-runner-ct01-ct04.png` e `prints/16-runner-ct05.png` (resultado da execução no Runner do Postman, com status HTTP e testes aprovados). Prints das respostas JSON individuais: `<ADICIONAR prints/17-...>`.
+**Evidências:** `prints/15-runner-ct01-ct04.png` e `prints/16-runner-ct05.png` (resultado da execução no Runner do Postman, com status HTTP e testes aprovados). Resposta JSON do CT02: `prints/17-ct02-senha-incorreta.png`. Faltam os prints de CT01, CT03, CT04 e CT05: `<ADICIONAR>`.
 
 # Registro dos Testes
 
