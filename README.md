@@ -45,7 +45,7 @@ Este projeto documenta a execução de testes funcionais **caixa cinza** sobre a
 | Autenticação habilitada | `prints/03-auth-habilitada.jpg` |
 | Usuário criado | `prints/04-usuario-criado.jpg` |
 | Credenciais da API (chave parcialmente oculta) | `prints/05-credenciais-api.jpg` |
-| Identificação do aluno no ambiente | `prints/06-identificacao.jpg` |
+| Identificação do aluno no ambiente | `prints/06-identificacao.png` |
 
 <!-- TODO: após salvar os prints, descomente/adicione: ![Projeto criado](prints/01-projeto-criado.jpg) -->
 
