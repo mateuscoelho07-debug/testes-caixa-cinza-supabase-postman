@@ -2,15 +2,13 @@
 
 > **Aluno:** Mateus Coelho Cardoso — **RA:** 250855
 
-> ⚠️ **Antes de entregar:** procure por `<PREENCHER>` / `TODO` neste arquivo e substitua pelos dados e prints reais produzidos por você. Nada aqui deve ser copiado de terceiros.
-
 ## Estrutura do repositório
 
 ```
 /README.md
 /postman/    -> collection e environment exportados do Postman
 /prints/     -> evidências (prints reais)
-/planilha/   -> registro_testes.csv (planilha de testes)
+/planilha/   -> registro_testes.csv e registro_testes.xlsx (planilha de testes)
 ```
 
 # Introdução
@@ -26,9 +24,9 @@ Este projeto documenta a execução de testes funcionais **caixa cinza** sobre a
 
 # Configuração do Supabase
 
-**Como o projeto foi criado:** acessei https://supabase.com, criei minha conta, e em *New project* criei o projeto `testes-caixa-cinza-auth` (região East US, Ohio). `<PREENCHER com o seu relato>`
+**Como o projeto foi criado:** acessei https://supabase.com, criei minha conta, e em *New project* criei o projeto `testes-caixa-cinza-auth` (região East US, Ohio). Criei também uma organização no plano gratuito (Free) e defini a senha do banco de dados do projeto.
 
-**Tipo de autenticação:** e-mail e senha (*Authentication → Providers → Email* habilitado). Para facilitar o teste, a confirmação de e-mail foi `<desativada / usuário confirmado manualmente>`.
+**Tipo de autenticação:** e-mail e senha (*Authentication → Providers → Email* habilitado). Para facilitar o teste, o usuário foi criado já confirmado (*Auto Confirm User*), sem depender do e-mail de confirmação.
 
 **Como o usuário foi criado:** em *Authentication → Users → Add user → Create new user*, informando e-mail e senha de teste e marcando *Auto Confirm User*.
 
@@ -47,11 +45,15 @@ Este projeto documenta a execução de testes funcionais **caixa cinza** sobre a
 | Credenciais da API (chave parcialmente oculta) | `prints/05-credenciais-api.jpg` |
 | Identificação do aluno no ambiente | `prints/06-identificacao.png` |
 
-<!-- TODO: após salvar os prints, descomente/adicione: ![Projeto criado](prints/01-projeto-criado.jpg) -->
+![Projeto criado](prints/01-projeto-criado.jpg)
+![Autenticação habilitada](prints/03-auth-habilitada.jpg)
+![Usuário criado](prints/04-usuario-criado.jpg)
+![Credenciais da API](prints/05-credenciais-api.jpg)
+![Identificação do aluno](prints/06-identificacao.png)
 
 # Configuração do Postman
 
-- **Workspace:** criado em *Workspaces → Create Workspace* com o nome `<NOME>`.
+- **Workspace:** criado em *Workspaces → Create Workspace* com o nome "Mateus Coelho Cardoso - Testes Caixa Cinza".
 - **Environment:** `Supabase Auth - Teste Caixa Cinza` (arquivo em `postman/`).
 - **Variáveis:**
 
@@ -65,6 +67,10 @@ Este projeto documenta a execução de testes funcionais **caixa cinza** sobre a
 As variáveis evitam repetir valores e permitem trocar de projeto/usuário sem editar cada requisição. A collection `postman/supabase-auth.postman_collection.json` contém as 5 requisições, cada uma com testes automáticos (aba *Tests*).
 
 **Evidências:** `prints/07-workspace.png`, `prints/08-environment-variaveis.png` (valor da api_key ocultado), `prints/09-organizacao-postman.png`.
+
+![Workspace](prints/07-workspace.png)
+![Environment e variáveis](prints/08-environment-variaveis.png)
+![Organização](prints/09-organizacao-postman.png)
 
 # Configuração das Requisições
 
@@ -89,6 +95,10 @@ As variáveis evitam repetir valores e permitem trocar de projeto/usuário sem e
 
 **Evidências:** `prints/10-endpoint-params.png`, `prints/11-headers.png`, `prints/12-body.png` (requisição CT01 criada no Postman).
 
+![Endpoint](prints/10-endpoint-params.png)
+![Headers](prints/11-headers.png)
+![Body](prints/12-body.png)
+
 # Execução dos Testes
 
 Cenários executados (collection `postman/`):
@@ -105,11 +115,21 @@ Cenários executados (collection `postman/`):
 
 **Evidências:** `prints/15-runner-ct01-ct04.png` e `prints/16-runner-ct05.png` (resultado da execução no Runner do Postman, com status HTTP e testes aprovados). Resposta JSON do CT02: `prints/17-ct02-senha-incorreta.png`. CT01 (com access_token; o refresh_token foi ocultado): `prints/18-ct01-login-valido.png`; CT03: `prints/19-ct03-usuario-inexistente.png`; CT04: `prints/20-ct04-campos-vazios.png`; CT05: `prints/21-ct05-credenciais-invalidas.png`.
 
+![Runner CT01 a CT04](prints/15-runner-ct01-ct04.png)
+![Runner CT05](prints/16-runner-ct05.png)
+![CT01 - login válido](prints/18-ct01-login-valido.png)
+![CT02 - senha incorreta](prints/17-ct02-senha-incorreta.png)
+![CT03 - usuário inexistente](prints/19-ct03-usuario-inexistente.png)
+![CT04 - campos vazios](prints/20-ct04-campos-vazios.png)
+![CT05 - credenciais inválidas](prints/21-ct05-credenciais-invalidas.png)
+
 # Registro dos Testes
 
 Os testes foram registrados em [`planilha/registro_testes.csv`](planilha/registro_testes.csv) (campos: ID, cenário, entrada, resultado esperado, resultado obtido, status, observações), preenchida logo após cada execução. Documentar os testes garante rastreabilidade, repetibilidade e comparação entre versões. Falhas identificadas: nenhuma; todos os cenários se comportaram como esperado. A planilha está disponível em `.csv` e `.xlsx`.
 
 **Evidências:** `prints/22-planilha.png` (planilha preenchida com CT01 a CT05).
+
+![Planilha](prints/22-planilha.png)
 
 # Resultados Obtidos
 
